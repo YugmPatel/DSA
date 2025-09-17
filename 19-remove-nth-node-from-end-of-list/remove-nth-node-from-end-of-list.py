@@ -4,7 +4,7 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    # def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
 
         # Brute Force Approach
 
@@ -43,15 +43,32 @@ class Solution:
 
         # Recursion
 
-        def rec(self, head, n):
-            if not head:
-                return None
+        # def rec(self, head, n):
+        #     if not head:
+        #         return None
 
-            head.next = self.rec(head.next, n)
-            n[0] -= 1
-            if n[0] == 0:
-                return head.next
-            return head
+        #     head.next = self.rec(head.next, n)
+        #     n[0] -= 1
+        #     if n[0] == 0:
+        #         return head.next
+        #     return head
 
-        def removeNthFromEnd(self, head, n):
-            return self.rec(head, [n])
+        # def removeNthFromEnd(self, head, n):
+        #     return self.rec(head, [n])
+
+        # Two Pointers
+
+        dummy = ListNode(0, head)
+        left = dummy
+        right = head
+
+        while n > 0:
+            right = right.next
+            n -= 1
+
+        while right:
+            left = left.next
+            right = right.next
+
+        left.next = left.next.next
+        return dummy.next
