@@ -139,6 +139,8 @@ class Solution:
 
     #     return dummy.next
 
+    # Iteration with Divide and Conquer
+
         if not lists or len(lists) == 0:
             return None
 
