@@ -18,18 +18,40 @@ class Solution:
 
         # Iterative DFS
 
-        stack = [(p, q)]
+        # stack = [(p, q)]
 
-        while stack:
-            node1, node2 = stack.pop()
+        # while stack:
+        #     node1, node2 = stack.pop()
 
-            if not node1 and not node2:
-                continue
-            if not node1 or not node2 or node1.val != node2.val:
-                return False
+        #     if not node1 and not node2:
+        #         continue
+        #     if not node1 or not node2 or node1.val != node2.val:
+        #         return False
 
-            stack.append((node1.right, node2.right))
-            stack.append((node1.left, node2.left))
+        #     stack.append((node1.right, node2.right))
+        #     stack.append((node1.left, node2.left))
+
+        # return True
+
+        # Breadth First Search
+
+        q1 = deque([p])
+        q2 = deque([q])
+
+        while q1 and q2:
+            for _ in range(len(q1)):
+                nodeP = q1.popleft()
+                nodeQ = q2.popleft()
+
+                if nodeP is None and nodeQ is None:
+                    continue
+                if nodeP is None or nodeQ is None or nodeP.val != nodeQ.val:
+                    return False
+
+                q1.append(nodeP.left)
+                q1.append(nodeP.right)
+                q2.append(nodeQ.left)
+                q2.append(nodeQ.right)
 
         return True
         
