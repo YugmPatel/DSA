@@ -40,20 +40,35 @@ class Solution:
 
         # Recursive DFS
 
-        cnt = k
-        res = root.val
+        # cnt = k
+        # res = root.val
 
-        def dfs(node):
-            nonlocal cnt, res
-            if not node:
-                return
+        # def dfs(node):
+        #     nonlocal cnt, res
+        #     if not node:
+        #         return
 
-            dfs(node.left)
-            cnt -= 1
-            if cnt == 0:
-                res = node.val
-                return
-            dfs(node.right)
+        #     dfs(node.left)
+        #     cnt -= 1
+        #     if cnt == 0:
+        #         res = node.val
+        #         return
+        #     dfs(node.right)
 
-        dfs(root)
-        return res
+        # dfs(root)
+        # return res
+
+        # Iterative DFS
+
+        stack = []
+        curr = root
+
+        while stack or curr:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            k -= 1
+            if k == 0:
+                return curr.val
+            curr = curr.right
