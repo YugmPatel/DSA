@@ -25,15 +25,35 @@ class Solution:
         
         # Inorder Traversal
 
-        arr = []
+        # arr = []
+
+        # def dfs(node):
+        #     if not node:
+        #         return
+
+        #     dfs(node.left)
+        #     arr.append(node.val)
+        #     dfs(node.right)
+
+        # dfs(root)
+        # return arr[k - 1]
+
+        # Recursive DFS
+
+        cnt = k
+        res = root.val
 
         def dfs(node):
+            nonlocal cnt, res
             if not node:
                 return
 
             dfs(node.left)
-            arr.append(node.val)
+            cnt -= 1
+            if cnt == 0:
+                res = node.val
+                return
             dfs(node.right)
 
         dfs(root)
-        return arr[k - 1]
+        return res
