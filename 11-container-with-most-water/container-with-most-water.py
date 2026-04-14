@@ -1,24 +1,18 @@
 class Solution:
     def maxArea(self, height: List[int]) -> int:
+        n = len(height)
+        l = 0
+        r = n - 1
+        max_area = 0
 
-        # Brute Force Approach
+        while l < r:
+            w = r - l
+            h = min(height[l], height[r])
+            a = w * h
+            max_area = max(max_area, a)
 
-        # result = 0
-        # for i in range(len(height)):
-        #     for j in range(i + 1, len(height)):
-        #         result = max(result, min(height[i], height[j]) * (j - i))
-        # return result
-
-        # Two Pointers
-
-        left, right = 0, len(height) - 1
-        result = 0
-
-        while left < right:
-            area = min(height[left], height[right]) * (right - left)
-            result = max(result, area)
-            if height[left] <= height[right]:
-                left += 1
+            if height[l] < height[r]:
+                l += 1
             else:
-                right -= 1
-        return result
+                r -= 1
+        return max_area
